@@ -2,12 +2,8 @@ import * as React from "react";
 import { Dispatch } from "redux";
 import { useDispatch } from "react-redux";
 import { ICustomer } from "../../types/types";
-import {
-  StyledCustomer,
-  StyledCustomerDelete,
-  StyledCustomerInfo,
-  StyledCustomerName,
-} from "./StyledCustomer";
+import { StyledCustomerDelete } from "./StyledCustomer";
+import { TableData, TableRow } from "../../views/Home/Home.styles";
 
 type Props = {
   customer: ICustomer;
@@ -23,16 +19,16 @@ export const Customer: React.FC<Props> = ({ customer, removeCustomer }) => {
   );
 
   return (
-    <StyledCustomer>
-      <StyledCustomerName>
+    <TableRow>
+      <TableData data-label="Name">
         {customer.firstName} {customer.lastName}
-      </StyledCustomerName>
-      <StyledCustomerInfo>
-        Phone number: {customer.phoneNumber}
-      </StyledCustomerInfo>
-      <StyledCustomerDelete onClick={() => deleteCustomer(customer)}>
-        Delete
-      </StyledCustomerDelete>
-    </StyledCustomer>
+      </TableData>
+      <TableData data-label="Phone number">{customer.phoneNumber}</TableData>
+      <TableData data-label="Action">
+        <StyledCustomerDelete onClick={() => deleteCustomer(customer)}>
+          Delete
+        </StyledCustomerDelete>
+      </TableData>
+    </TableRow>
   );
 };

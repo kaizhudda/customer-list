@@ -53,7 +53,6 @@ export const AddCustomerForm = ({ saveCustomer }: Props) => {
 
   function validateForm(values: Customer) {
     console.log("formValidation", values);
-    let errors = {};
     const findMatch = customers.find(
       ({ firstName, lastName, phoneNumber }) =>
         (firstName === values.firstName && lastName === values.lastName) ||
@@ -62,7 +61,7 @@ export const AddCustomerForm = ({ saveCustomer }: Props) => {
     if (findMatch) {
       return {
         firstName:
-          "The customer is already present, please enter another customer name",
+          "The customer is already present, please enter another customer name or phone number",
       };
     }
     return {};
