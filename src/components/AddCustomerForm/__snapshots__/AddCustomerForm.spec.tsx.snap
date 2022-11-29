@@ -42,7 +42,7 @@ exports[`<AddCustomerForm /> should render a <AddCustomerForm /> 1`] = `
       class="sc-dlnjwi fstXny"
       id="phoneNumber"
       name="phoneNumber"
-      placeholder="john@acme.com"
+      placeholder="0401122334"
       type="tel"
       value=""
     />

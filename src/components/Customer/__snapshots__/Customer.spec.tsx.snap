@@ -2,27 +2,33 @@
 
 exports[`<Customer /> should render a <Customer /> 1`] = `
 <div>
-  <div
-    class="sc-bdnxRM llOSvQ"
+  <tr
+    class="sc-jSFjdj ePGGZn"
   >
-    <h2
-      class="sc-gtsrHT bmgxMS"
+    <td
+      class="sc-iCoGMd zrCMh"
+      data-label="Name"
     >
       Test
        
       Tester
-    </h2>
-    <p
-      class="sc-dlnjwi kUbGey"
+    </td>
+    <td
+      class="sc-iCoGMd zrCMh"
+      data-label="Phone number"
     >
-      Phone number: 
       00000000
-    </p>
-    <button
-      class="sc-hKFxyN dwHgfV"
+    </td>
+    <td
+      class="sc-iCoGMd zrCMh"
+      data-label="Action"
     >
-      Delete
-    </button>
-  </div>
+      <button
+        class="sc-bdnxRM dgLBbs"
+      >
+        Delete
+      </button>
+    </td>
+  </tr>
 </div>
 `;
