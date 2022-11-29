@@ -1,6 +1,12 @@
+import { useHistory } from "react-router-dom";
+import { useState } from "react";
 import { useSelector, shallowEqual } from "react-redux";
 import { Customer } from "../../components/Customer/Customer";
-import { CustomerState, ICustomer } from "../../types/types";
+import {
+  Customer as CustomerType,
+  CustomerState,
+  ICustomer,
+} from "../../types/types";
 import { removeCustomer } from "../../redux/actions/customerActions";
 import {
   StyledContainer,
@@ -9,14 +15,29 @@ import {
   TableRow,
   Table,
 } from "./Home.styles";
-import { useHistory } from "react-router-dom";
 
 const Home = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+
   const history = useHistory();
-  const customers: readonly ICustomer[] = useSelector(
+  const customers: ICustomer[] = useSelector(
     (state: CustomerState) => state.customers,
     shallowEqual
   );
+  const [filteredSearchResults, setFilteredSearchResults] =
+    useState<ICustomer[]>(customers);
+
+  const onHandleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const value = e.target.value.toLowerCase().trim();
+    setSearchTerm(value);
+    const result = customers.filter(
+      (customer) =>
+        customer.firstName.toLowerCase().includes(value) ||
+        customer.lastName.toLowerCase().includes(value)
+    );
+    setFilteredSearchResults(result);
+  };
 
   return (
     <>
@@ -25,6 +46,13 @@ const Home = () => {
           Add Customer
         </StyledAddButton>
       </StyledContainer>
+      <input
+        id="search"
+        name="search"
+        placeholder="John"
+        value={searchTerm}
+        onChange={onHandleSearchInput}
+      />
       <Table>
         <thead>
           <TableRow>
@@ -34,13 +62,14 @@ const Home = () => {
           </TableRow>
         </thead>
         <tbody>
-          {customers.map((customer: ICustomer) => (
-            <Customer
-              key={customer.id}
-              customer={customer}
-              removeCustomer={removeCustomer}
-            />
-          ))}
+          {filteredSearchResults &&
+            filteredSearchResults.map((customer: ICustomer) => (
+              <Customer
+                key={customer.id}
+                customer={customer}
+                removeCustomer={removeCustomer}
+              />
+            ))}
         </tbody>
       </Table>
     </>

@@ -52,7 +52,6 @@ export const AddCustomerForm = ({ saveCustomer }: Props) => {
   }
 
   function validateForm(values: Customer) {
-    console.log("formValidation", values);
     const findMatch = customers.find(
       ({ firstName, lastName, phoneNumber }) =>
         (firstName === values.firstName && lastName === values.lastName) ||
@@ -79,7 +78,6 @@ export const AddCustomerForm = ({ saveCustomer }: Props) => {
         values: Customer,
         { setSubmitting }: FormikHelpers<Customer>
       ) => {
-        console.log("submitting new customer details", values);
         saveCustomer(values);
         history.push("/");
         setSubmitting(false);
