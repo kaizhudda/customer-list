@@ -1,3 +1,11 @@
+## Updates
+
+- Moved NewCustomerForm into its own view called CustomerView which is available at /add-customer route or by clicking the “Add Customer” Button
+- Added validation on the AddNewCustomer form fields to ensure their correct before submitting
+- Add duplicate check before submitting AddNewCustomer form
+- Convert Customer view into a table format for easy viewing
+- Added search for first name and last names which filters the table
+
 # Customer List Test Project
 
 Thanks for taking the time to look at this code test project. This project aims to give a reasonable baseline view of the tools and structure we work with, it is far from perfect and plays fast with some of the rules, but the overall structure looks a lot like something you'd see in an Alinta Energy project.
