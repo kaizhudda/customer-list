@@ -1,21 +1,27 @@
 import * as React from "react";
 import { StyledMain, StyledHeader, StyledHeaderText } from "./StyledApp";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 import Home from "./views/Home";
+import AddCustomer from "./views/AddCustomer";
 
 const App: React.FC = () => {
+  const location = useLocation();
   return (
     <StyledMain>
       <StyledHeader>
-        <StyledHeaderText>Customer List</StyledHeaderText>
+        <StyledHeaderText>
+          {location.pathname === "/" && "Customer List"}
+          {location.pathname === "/add-customer" && "Add Customer"}
+        </StyledHeaderText>
       </StyledHeader>
-      <Router>
-        <Switch>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </Router>
+      <Switch>
+        <Route path="/add-customer">
+          <AddCustomer />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
     </StyledMain>
   );
 };
